@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const auth_service_1 = require("./auth.service");
 const signup_dto_1 = require("./dto/signup.dto");
 const signin_dto_1 = require("./dto/signin.dto");
+const refresh_token_guard_1 = require("./guards/refresh-token.guard");
 let AuthController = class AuthController {
     authService;
     constructor(authService) {
@@ -27,6 +28,14 @@ let AuthController = class AuthController {
     }
     signin(dto) {
         return this.authService.signin(dto);
+    }
+    async refreshTokens(req) {
+        const userId = req.user.id;
+        const refreshToken = req.cookies?.refresh_token || req.body?.refreshToken;
+        return this.authService.refreshTokens(userId, refreshToken);
+    }
+    logout(body) {
+        return this.authService.logout(body.userId);
     }
 };
 exports.AuthController = AuthController;
@@ -44,6 +53,21 @@ __decorate([
     __metadata("design:paramtypes", [signin_dto_1.SigninDto]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "signin", null);
+__decorate([
+    (0, common_1.UseGuards)(refresh_token_guard_1.RefreshTokenGuard),
+    (0, common_1.Post)('refresh'),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "refreshTokens", null);
+__decorate([
+    (0, common_1.Post)('logout'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "logout", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

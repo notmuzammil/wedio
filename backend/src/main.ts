@@ -5,10 +5,12 @@ import { AllExceptionsFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  app.useGlobalPipes(new ValidationPipe({ 
+                                whitelist: true,
+                                forbidNonWhitelisted: true,
+                                transform: true, 
+                              }));
   app.useGlobalFilters(new AllExceptionsFilter());
-
-  // For development, allow all origins
   app.enableCors({
     origin: true, // Allow all origins in development
     credentials: true,
@@ -16,7 +18,7 @@ async function bootstrap() {
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   });
 
-  await app.listen(process.env.PORT || 3000);
+  await app.listen(process.env.PORT ?? 3000);
   console.log(`Application is running on: ${await app.getUrl()}`);
 }
 

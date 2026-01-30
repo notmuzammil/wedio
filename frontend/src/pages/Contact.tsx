@@ -55,7 +55,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      info: "hello@aasaanshaadi.pk",
+      info: "hello@WedEase.pk",
       description: "We reply within 24 hours"
     },
     {

@@ -11,6 +11,7 @@ export declare class UsersController {
         role: import("generated/prisma").$Enums.Role;
         phone: string | null;
         id: string;
+        refreshToken: string | null;
         createdAt: Date;
         updatedAt: Date;
     }[]>;
@@ -21,6 +22,7 @@ export declare class UsersController {
         role: import("generated/prisma").$Enums.Role;
         phone: string | null;
         id: string;
+        refreshToken: string | null;
         createdAt: Date;
         updatedAt: Date;
     } | null>;
@@ -31,6 +33,7 @@ export declare class UsersController {
         role: import("generated/prisma").$Enums.Role;
         phone: string | null;
         id: string;
+        refreshToken: string | null;
         createdAt: Date;
         updatedAt: Date;
     }>;

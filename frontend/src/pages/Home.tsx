@@ -420,14 +420,24 @@ const Home = () => {
           <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
             Join thousands of couples who made their wedding planning aasaan with us.
           </p>
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-rose-gold"
-            onClick={handleBookNow}
-          >
-            Start Your Journey
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-rose-gold"
+              onClick={handleBookNow}
+            >
+              Start Your Journey
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-rose-gold"
+              onClick={() => navigate("/vendor-signup")}
+            >
+              Become a Vendor
+            </Button>
+          </div>
         </div>
       </section>
 

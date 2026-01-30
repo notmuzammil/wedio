@@ -10,6 +10,7 @@ export declare class UsersService {
         role: import("generated/prisma").$Enums.Role;
         phone: string | null;
         id: string;
+        refreshToken: string | null;
         createdAt: Date;
         updatedAt: Date;
     }[]>;
@@ -20,6 +21,7 @@ export declare class UsersService {
         role: import("generated/prisma").$Enums.Role;
         phone: string | null;
         id: string;
+        refreshToken: string | null;
         createdAt: Date;
         updatedAt: Date;
     } | null>;
@@ -30,6 +32,7 @@ export declare class UsersService {
         role: import("generated/prisma").$Enums.Role;
         phone: string | null;
         id: string;
+        refreshToken: string | null;
         createdAt: Date;
         updatedAt: Date;
     }>;

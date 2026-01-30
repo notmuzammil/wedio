@@ -6,7 +6,11 @@ const common_1 = require("@nestjs/common");
 const http_exception_filter_1 = require("./common/filters/http-exception.filter");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
-    app.useGlobalPipes(new common_1.ValidationPipe({ whitelist: true }));
+    app.useGlobalPipes(new common_1.ValidationPipe({
+        whitelist: true,
+        forbidNonWhitelisted: true,
+        transform: true,
+    }));
     app.useGlobalFilters(new http_exception_filter_1.AllExceptionsFilter());
     app.enableCors({
         origin: true,
@@ -14,7 +18,7 @@ async function bootstrap() {
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
     });
-    await app.listen(process.env.PORT || 3000);
+    await app.listen(process.env.PORT ?? 3000);
     console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();

@@ -6,26 +6,29 @@ import { AuthGuard } from '@nestjs/passport';
 @Controller('users')
 export class UsersController {
     // Inject the UsersService to handle user-related operations
-    // Dependency Injection
+    // Dependency Injection yaha hai
     constructor(private readonly usersService: UsersService) {}
     
     @UseGuards(AuthGuard('jwt'))
     @Get('me')
     getMe(@Req() req) {
-        return req.user; // decoded JWT payload
+        return req.user; 
     }
-
+    
+    @UseGuards(AuthGuard('jwt'))
     @Get()
     async findAll() {
         return this.usersService.findAll();
     }
-
+    
+    @UseGuards(AuthGuard('jwt'))
     @Get(':id')
     async findOne(@Param('id') id: string) {
         return this.usersService.findOne(id);
     }
-
-
+    
+    
+    @UseGuards(AuthGuard('jwt'))
     @Post()
     async create(@Body() createuserDto:CreateUserDto){
         return this.usersService.create(createuserDto);

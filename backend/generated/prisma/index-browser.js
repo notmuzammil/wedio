@@ -127,8 +127,73 @@ exports.Prisma.UserScalarFieldEnum = {
   passwordHash: 'passwordHash',
   phone: 'phone',
   role: 'role',
+  refreshToken: 'refreshToken',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.VendorProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  businessName: 'businessName',
+  category: 'category',
+  city: 'city',
+  area: 'area',
+  address: 'address',
+  description: 'description',
+  logoUrl: 'logoUrl',
+  ratingAvg: 'ratingAvg',
+  status: 'status'
+};
+
+exports.Prisma.ListingScalarFieldEnum = {
+  id: 'id',
+  vendorId: 'vendorId',
+  title: 'title',
+  price: 'price',
+  description: 'description',
+  thumbnailUrl: 'thumbnailUrl',
+  category: 'category',
+  location: 'location',
+  maxGuests: 'maxGuests',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AvailabilityScalarFieldEnum = {
+  id: 'id',
+  listingId: 'listingId',
+  date: 'date',
+  isAvailable: 'isAvailable',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BookingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  eventDate: 'eventDate',
+  guestCount: 'guestCount',
+  status: 'status',
+  totalPrice: 'totalPrice',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BookingItemScalarFieldEnum = {
+  id: 'id',
+  bookingId: 'bookingId',
+  listingId: 'listingId',
+  priceAtBooking: 'priceAtBooking'
+};
+
+exports.Prisma.ReviewScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  vendorId: 'vendorId',
+  rating: 'rating',
+  comment: 'comment',
+  photoUrl: 'photoUrl',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -146,12 +211,49 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 exports.Role = exports.$Enums.Role = {
+  ADMIN: 'ADMIN',
   VENDOR: 'VENDOR',
   CUSTOMER: 'CUSTOMER'
 };
 
+exports.VendorCategory = exports.$Enums.VendorCategory = {
+  HALL: 'HALL',
+  CATERING: 'CATERING',
+  CAR_RENTAL: 'CAR_RENTAL',
+  BEAUTY: 'BEAUTY',
+  OTHER: 'OTHER'
+};
+
+exports.VendorStatus = exports.$Enums.VendorStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  INACTIVE: 'INACTIVE'
+};
+
+exports.ListingCategory = exports.$Enums.ListingCategory = {
+  HALL: 'HALL',
+  CATERING: 'CATERING',
+  CAR_RENTAL: 'CAR_RENTAL',
+  BEAUTY: 'BEAUTY',
+  OTHER: 'OTHER'
+};
+
+exports.BookingStatus = exports.$Enums.BookingStatus = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+};
+
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  VendorProfile: 'VendorProfile',
+  Listing: 'Listing',
+  Availability: 'Availability',
+  Booking: 'Booking',
+  BookingItem: 'BookingItem',
+  Review: 'Review'
 };
 
 /**

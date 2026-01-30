@@ -29,7 +29,7 @@ const AIChatWidget = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: 'Ji, this is Aasaan Shaadi agent. Feel free to ask anything!',
+      text: 'Hi, this is WedEase agent. Feel free to ask anything!',
       sender: 'bot',
       timestamp: new Date()
     }
@@ -125,7 +125,7 @@ const AIChatWidget = () => {
               </div>
               <div>
                 <CardTitle className="text-sm font-semibold text-foreground">
-                  Aasaan Shaadi AI
+                  WedEase AI
                 </CardTitle>
                 <Badge variant="secondary" className="text-xs bg-green-100 text-green-700 border-green-200">
                   Online

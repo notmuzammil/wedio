@@ -18,6 +18,13 @@ class SignupDto {
     name;
     phone;
     role;
+    businessName;
+    vendorCategory;
+    city;
+    area;
+    address;
+    description;
+    logoUrl;
 }
 exports.SignupDto = SignupDto;
 __decorate([
@@ -42,4 +49,33 @@ __decorate([
     (0, class_validator_1.IsEnum)(prisma_1.Role),
     __metadata("design:type", String)
 ], SignupDto.prototype, "role", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], SignupDto.prototype, "businessName", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(prisma_1.VendorCategory),
+    __metadata("design:type", String)
+], SignupDto.prototype, "vendorCategory", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], SignupDto.prototype, "city", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], SignupDto.prototype, "area", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], SignupDto.prototype, "address", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], SignupDto.prototype, "description", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], SignupDto.prototype, "logoUrl", void 0);
 //# sourceMappingURL=signup.dto.js.map

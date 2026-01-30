@@ -7,8 +7,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import { useNavigate, Link } from "react-router-dom";
-import { signup, signin } from "@/services/auth";
-
 import { 
   Heart, 
   Mail, 
@@ -19,6 +17,7 @@ import {
   EyeOff,
   ArrowLeft
 } from "lucide-react";
+import { signin, signup } from "@/services/auth";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -40,16 +39,33 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate login process
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const response = await signin({
+        email: loginData.email,
+        password: loginData.password
+      });
 
-    toast.success("Welcome back! Redirecting to your dashboard...");
-    setIsLoading(false);
-    
-    // Redirect to home page after successful login
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
+      // Store tokens in localStorage
+      localStorage.setItem('accessToken', response.accessToken);
+      localStorage.setItem('refreshToken', response.refreshToken);
+      
+      // Store user info if needed
+      localStorage.setItem('user', JSON.stringify(response.user));
+
+      toast.success("Welcome back! Redirecting to your dashboard...");
+
+      // Redirect based on user role
+      if (response.user.role === 'VENDOR') {
+        navigate("/vendor-dashboard");
+      } else {
+        navigate("/user-dashboard");
+      }
+    } catch (error: any) {
+      console.error('Login error:', error);
+      toast.error(error.response?.data?.message || "Failed to sign in");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSignupSubmit = async (e: React.FormEvent) => {
@@ -63,54 +79,34 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-    const response = await signup({
-      name: signupData.name,
-      email: signupData.email,
-      phone: signupData.phone,
-      password: signupData.password,
-      role: "CUSTOMER", // required by your backend
-    });
+      const response = await signup({
+        name: signupData.name,
+        email: signupData.email,
+        phone: signupData.phone,
+        password: signupData.password,
+        role: "CUSTOMER" // Default role for regular users
+      });
 
-    toast.success("Account created successfully!");
-    console.log("Signup success:", response);
-
-    navigate("/");
-  } catch (err: any) {
-    console.error("Signup error:", err);
-    toast.error(err.response?.data?.message || "Signup failed");
-  } finally {
-    setIsLoading(false);
-  }
-    
-    // Redirect to home page after successful signup
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
-  };
-
-  const handleSigninSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const response = await signin({
-        email: loginData.email,
-        password: loginData.password,
+      // If signup is successful, automatically sign them in
+      const loginResponse = await signin({
+        email: signupData.email,
+        password: signupData.password
       });
 
       // Store tokens in localStorage
-      localStorage.setItem("accessToken", response.accessToken);
-      localStorage.setItem("refreshToken", response.refreshToken);
-      
-      // Show success message
-      toast.success("Signed in successfully!");
-      
-      // Redirect to home page
-      navigate("/");
-      
-    } catch (err: any) {
-      console.error("Signin error:", err);
-      toast.error(err.response?.data?.message || "Invalid email or password");
+      localStorage.setItem('accessToken', loginResponse.accessToken);
+      localStorage.setItem('refreshToken', loginResponse.refreshToken);
+      localStorage.setItem('user', JSON.stringify(loginResponse.user));
+
+      toast.success("Account created successfully! Welcome to Aasaan Shaadi!");
+
+      // Redirect to user dashboard
+      setTimeout(() => {
+        navigate("/user-dashboard");
+      }, 1000);
+    } catch (error: any) {
+      console.error('Signup error:', error);
+      toast.error(error.response?.data?.message || "Failed to create account");
     } finally {
       setIsLoading(false);
     }
@@ -184,7 +180,7 @@ const Login = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSigninSubmit} className="space-y-4">
+                <form onSubmit={handleLoginSubmit} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-foreground">Email</Label>
                     <div className="relative">

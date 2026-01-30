@@ -84,7 +84,7 @@ const About = () => {
           <div className="text-center max-w-4xl mx-auto">
             <div className="flex items-center justify-center mb-6">
               <Sparkles className="h-8 w-8 text-rose-gold mr-3" />
-              <span className="text-rose-gold font-medium text-lg">About Aasaan Shaadi</span>
+              <span className="text-rose-gold font-medium text-lg">About WedEase</span>
             </div>
             <h1 className="text-4xl sm:text-6xl font-bold text-foreground mb-8 leading-tight">
               Your Wedding
@@ -94,7 +94,7 @@ const About = () => {
             </h1>
             <div className="bg-gradient-to-r from-blush to-pearl p-8 rounded-2xl border border-rose-gold/20 shadow-lg">
               <p className="text-xl text-foreground leading-relaxed mb-6">
-                <strong>Aasaan Shaadi is not just a service — it's a wedding partner.</strong> We aim to revolutionize 
+                <strong>WedEase is not just a service — it's a wedding partner.</strong> We aim to revolutionize 
                 how weddings are planned in Pakistan by making the entire process digital, transparent, and affordable.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">

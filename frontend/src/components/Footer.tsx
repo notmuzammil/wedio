@@ -26,7 +26,7 @@ const Footer = () => {
   ];
 
   const downloadApp = [
-    { name: "Aasaan Shaadi Planner App", href: "#" },
+    { name: "WedEase Planner App", href: "#" },
   ];
 
   return (
@@ -40,7 +40,7 @@ const Footer = () => {
                 <Heart className="h-6 w-6 text-white" />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-rose-gold to-rose-gold-dark bg-clip-text text-transparent">
-                Aasaan Shaadi
+                WedEase
               </span>
             </Link>
             
